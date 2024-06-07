@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      target: builder
+    container_name: fastapi-application
+    environment:
+      OPENAI_API_KEY: "sk-proj-pz2UAmFiRZkwQdWAEnWQT3BlbkFJ5lCjog1bLDboD6DOcc5p"
+      username: "tesuto1125@outlook.com"
+      password: "thanglol001"
+      PORT: 42069
+    ports:
+      - '42069:42069'
+    restart: "no"
