@@ -24,5 +24,5 @@ async def upload_pdf(file: UploadFile = File(...)):
         text = ""
         for page in pdf.pages:
             text += page.extract_text()
-
+    print(text)
     return {"text": text}
