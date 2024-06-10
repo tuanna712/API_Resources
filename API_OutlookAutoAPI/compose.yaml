@@ -6,10 +6,8 @@ services:
       target: builder
     container_name: outlookapi_container
     environment:
-      OPENAI_API_KEY: "sk-proj-pz2UAmFiRZkwQdWAEnWQT3BlbkFJ5lCjog1bLDboD6DOcc5p"
       username: "tesuto1125@outlook.com"
       password: "thanglol001"
-      # target: ["tuan.a.nguyen@vpi.pvn.vn", "metalwallcrusher@gmail.com"]
       PORT: 42069
     ports:
       - '42069:42069'
