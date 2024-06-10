@@ -53,5 +53,5 @@ async def upload_pdf(file: UploadFile = File(...)):
         await aiosmtplib.send(message, hostname="smtp-mail.outlook.com", port=587, username = username, password = password)
         return {"result": "Done"}
     except Exception as e:
-        return {"error": e}
+        return {"error": str(e)}
 
