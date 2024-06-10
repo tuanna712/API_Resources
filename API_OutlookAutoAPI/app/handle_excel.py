@@ -1,4 +1,4 @@
-from myopenai import MyOAI
+from .myopenai import MyOAI
 import pandas as pd
 import os
 
