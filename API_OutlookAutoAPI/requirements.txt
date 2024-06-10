@@ -5,3 +5,4 @@ uvicorn
 pdfplumber
 pandas
 aiosmtplib
+openpyxl
