@@ -33,7 +33,7 @@ def column_contains_keywords(df, keywords):
 
 
 def write_report(df_dicts):
-    api_key = os.environ("OPENAI_API_KEY")
+    api_key = os.environ["OPENAI_API_KEY"]
     myoai = MyOAI(api_key)
 
     table_content = ""

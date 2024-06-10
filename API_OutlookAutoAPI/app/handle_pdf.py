@@ -77,7 +77,7 @@ def pdf_extraction(file_path):
 
 def handle_pdf(file_path):
     text = pdf_extraction(file_path)
-    api_key = os.environ("OPENAI_API_KEY")
+    api_key = os.environ["OPENAI_API_KEY"]
     myoai = MyOAI(api_key)
 
     sysprompt = """
