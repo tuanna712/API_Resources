@@ -46,6 +46,7 @@ def pdf_extraction(file_path):
     DPR = PdfExtractor(file_path)
     DPR.extract_tables()
     target_table = DPR.tables[0]
+    print(target_table.head(10))
     target_table.columns = ["Col" + str(i + 1) for i in range(len(target_table.columns))]
  
     # Get start and end index
@@ -71,7 +72,7 @@ def pdf_extraction(file_path):
             if not pd.isna(value):
                 row_string += str(value) + " "
         main_content += row_string + "\n"
-        
+    print("MAIN CONTENT:" + main_content)
     return main_content
 
 def handle_pdf(file_path):
