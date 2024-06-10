@@ -3,9 +3,7 @@ import pandas as pd
 from fitz import Rect
 
 from .myopenai import MyOAI
-
-
- 
+import dotenv; dotenv.load_dotenv()
 class PdfExtractor:
     def __init__(self, file_path: str):
         self.file_path = file_path

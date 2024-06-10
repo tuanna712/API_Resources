@@ -1,6 +1,7 @@
 from .myopenai import MyOAI
 import pandas as pd
 import os
+import dotenv; dotenv.load_dotenv()
 
 def starts_with_number(s):
     return str(s)[0].isdigit()
