@@ -46,10 +46,11 @@ async def upload_pdf(file: UploadFile = File(...)):
         ## Start sending the mail
         username = os.environ["username"]
         password = os.environ["password"]
-        target = os.environ["target"]
+        # target = os.environ["target"]
+        target = ["tuan.a.nguyen@vpi.pvn.vn", "metalwallcrusher@gmail.com"]
         message = EmailMessage()
         message["From"] = username
-        message["To"] = target
+        # message["To"] = target
         message["Subject"] = f"Daily report summarization."
         message.set_content(f"{text}")
 
