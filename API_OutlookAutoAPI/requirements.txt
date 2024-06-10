@@ -2,5 +2,6 @@ semantic_kernel
 python-dotenv==1.0.0
 fastapi==0.108.0
 uvicorn
-python-multipart
 pdfplumber
+pandas
+aiosmtplib
