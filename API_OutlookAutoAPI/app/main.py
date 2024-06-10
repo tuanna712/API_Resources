@@ -3,8 +3,9 @@ import os
 from fastapi import FastAPI, File,UploadFile, requests
 from pydantic import BaseModel
 import base64
-from pdfplumber import open as open_pdf
-import pandas as pd
+
+from .handle_excel import handle_excel
+from .handle_pdf import handle_pdf
 
 import aiosmtplib
 from email.message import EmailMessage
@@ -32,23 +33,22 @@ async def upload_pdf(file: UploadFile = File(...)):
 
         if file.filename.endswith("pdf"):
             # Read the contents of the PDF
-            with open_pdf(file.filename) as pdf:
-                text = ""
-                for page in pdf.pages[:min(3, len(pdf.pages))]:
-                    text += page.extract_text()
+            text = handle_pdf(file.filename)
+            
 
         elif file.filename.endswith(("xlsx", "xls")):
-            dataframe = pd.read_excel(file.filename)
-            text = dataframe[:min(5, len(dataframe))].to_string()
+            text = handle_excel(file.filename)
+            
         
         ## Start sending the mail
         username = os.environ["username"]
         password = os.environ["password"]
+        target = os.environ["target"]
         message = EmailMessage()
         message["From"] = username
-        message["To"] = "metalwallcrusher@gmail.com"
-        message["Subject"] = f"File received from mail: {file.filename}"
-        message.set_content(f"File content: \n {text}")
+        message["To"] = target
+        message["Subject"] = f"Daily report summarization."
+        message.set_content(f"{text}")
 
         await aiosmtplib.send(message, hostname="smtp-mail.outlook.com", port=587, username = username, password = password)
         return {"result": "Done"}
