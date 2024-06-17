@@ -4,10 +4,10 @@ services:
     build:
       context: .
       target: builder
-    container_name: outlookapi_container
+    container_name: HTKT_AutoEmailing
     environment:
-      username: "tesuto1125@outlook.com"
-      password: "thanglol001"
+      username: "tuanna.vpi@pvu.edu.vn"
+      password: "Tc@091712"
       PORT: 42069
     ports:
       - '42069:42069'

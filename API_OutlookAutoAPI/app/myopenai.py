@@ -1,3 +1,4 @@
+import os
 from openai import OpenAI
 
 class MyOAI():
@@ -32,3 +33,15 @@ class MyOAI():
         )
         return response.data[0].embedding
     
+def check_alive_openai_key(self):
+        if os.environ['OPENAI_API_KEY'] == "":
+            self.response = "Please set OPENAI_API_KEY in .env file"
+            return False
+        else:
+            try:
+                OAI = MyOAI(os.environ['OPENAI_API_KEY'])
+                embedding = OAI.get_embedding("hello")
+                return True
+            except Exception as e:
+                self.response = f"!!! Openai API key is not valid. {e}"
+                return False
