@@ -1,6 +1,6 @@
 import os
 from .myopenai import MyOAI, check_alive_openai_key
-from fastapi import FastAPI, File,UploadFile, requests
+from fastapi import FastAPI, File, UploadFile, requests, Form
 from pydantic import BaseModel
 import base64
 
@@ -23,8 +23,9 @@ def hello_world():
     return {"message": "OK"}
         
 @app.post("/upload_pdf/")
-async def upload_pdf(file: UploadFile = File(...)):
-    import dotenv; dotenv.load_dotenv()
+async def upload_pdf(file: UploadFile = File(...), openai_key: str = Form(...)):
+    print("OpenAI key: ", openai_key)
+    os.environ['OPENAI_API_KEY'] = openai_key
     alive_oai_key = check_alive_openai_key()
     
     ## Save the uploaded file
