@@ -65,9 +65,16 @@ async def upload_pdf(file: UploadFile = File(...), openai_key: str = Form(...)):
         # message["To"] = target
         message["Subject"] = f"Daily report summarization {_file_name} "
         message.set_content(f"{text}")
+        
+        message.add_attachment(content, maintype='application', subtype=file.content_type.split('/')[1], filename=file.filename)
 
         await aiosmtplib.send(message, recipients=target, hostname="smtp-mail.outlook.com", port=587, username = username, password = password)
         print("MAIL SENT")
+
+        # Remove file after processing
+        os.remove(file.filename)
+        print(f"File {file.filename} removed!")
+
         return {"result": "Done"}
     except Exception as e:
         print(e)
