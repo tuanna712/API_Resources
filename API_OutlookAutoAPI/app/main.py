@@ -24,11 +24,13 @@ def hello_world():
         
 @app.post("/upload_pdf/")
 async def upload_pdf(file: UploadFile = File(...)):
+    print('Hello, World!')
     import dotenv; dotenv.load_dotenv()
     alive_oai_key = check_alive_openai_key()
     if not alive_oai_key:
         text = "Something wrong with your OpenAI API key!!!"
     else:
+        print('OpenAI key works fine...')
         try:
             ## Save the uploaded file
             content = base64.b64decode(await file.read())
