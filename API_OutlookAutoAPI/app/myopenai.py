@@ -34,15 +34,10 @@ class MyOAI():
         return response.data[0].embedding
     
 def check_alive_openai_key():
-    import dotenv; dotenv.load_dotenv()
-    if os.environ['OPENAI_API_KEY'] == "":
-        response = "Please set OPENAI_API_KEY in .env file"
+    try:
+        OAI = MyOAI(os.environ['OPENAI_API_KEY'])
+        embedding = OAI.get_embedding("hello")
+        return True
+    except Exception as e:
+        response = f"!!! Openai API key is not valid. {e}"
         return False
-    else:
-        try:
-            OAI = MyOAI(os.environ['OPENAI_API_KEY'])
-            embedding = OAI.get_embedding("hello")
-            return True
-        except Exception as e:
-            response = f"!!! Openai API key is not valid. {e}"
-            return False
