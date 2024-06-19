@@ -59,13 +59,13 @@ async def upload_pdf(file: UploadFile = File(...), openai_key: str = Form(...)):
         username = os.environ["username"]
         password = os.environ["password"]
         # target = os.environ["target"]
-        target = ["tuan.a.nguyen@xn8dp.onmicrosoft.com"]
+        target = ["quytx.epc@vpi.pvn.vn", "huydd@vpi.pvn.vn", "diemptt@vpi.pvn.vn", "thuannt@vpi.pvn.vn", "tungld@vpi.pvn.vn"]
         message = EmailMessage()
         message["From"] = username
         # message["To"] = target
         message["Subject"] = f"Daily report summarization {_file_name} "
         message.set_content(f"{text}")
-        
+
         message.add_attachment(content, maintype='application', subtype=file.content_type.split('/')[1], filename=file.filename)
 
         await aiosmtplib.send(message, recipients=target, hostname="smtp-mail.outlook.com", port=587, username = username, password = password)
