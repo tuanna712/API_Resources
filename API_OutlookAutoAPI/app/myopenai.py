@@ -33,9 +33,9 @@ class MyOAI():
         )
         return response.data[0].embedding
     
-def check_alive_openai_key(self):
+def check_alive_openai_key():
         if os.environ['OPENAI_API_KEY'] == "":
-            self.response = "Please set OPENAI_API_KEY in .env file"
+            response = "Please set OPENAI_API_KEY in .env file"
             return False
         else:
             try:
@@ -43,5 +43,5 @@ def check_alive_openai_key(self):
                 embedding = OAI.get_embedding("hello")
                 return True
             except Exception as e:
-                self.response = f"!!! Openai API key is not valid. {e}"
+                response = f"!!! Openai API key is not valid. {e}"
                 return False
