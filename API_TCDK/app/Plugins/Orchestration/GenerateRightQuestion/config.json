@@ -1,0 +1,30 @@
+{
+    "schema": 1,
+    "description": "Receive user question and revise it to fit the correct name of entity in neo4j knowledge graph database",
+    "execution_settings": {
+      "default": {
+        "max_tokens": 4096,
+        "temperature": 0.2,
+        "top_p": 0.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "input_variables": [
+      {
+        "name": "user_question",
+        "description": "The question taken by the user to ask or request the bot to do",
+        "default": ""
+      },
+      {
+        "name": "entity_label",
+        "description": "Label of entity in neo4j knowledge graph database",
+        "default": ""
+      },
+      {
+        "name": "entity_name",
+        "description": "Name of entity in neo4j knowledge graph database",
+        "default": ""
+      }
+    ]
+  }

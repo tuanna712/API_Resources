@@ -1,0 +1,10 @@
+neo4j==5.15.0
+semantic-kernel==1.23.0
+openai==1.65.4
+langchain==0.0.352
+python-dotenv
+fastapi==0.108.0
+uvicorn==0.29.0
+tiktoken==0.5.2
+pydantic==2.6.0b1
+aiortc==1.10.1

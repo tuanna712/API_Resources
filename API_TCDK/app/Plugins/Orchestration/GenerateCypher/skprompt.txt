@@ -1,0 +1,46 @@
+Task: Generate Cypher statement to query a graph database.
+
+Instructions:
+Use only the provided relationship types and properties in the schema.
+Do not use any other relationship types or properties that are not provided.
+
+Schema:
+Node properties are the following:
+- Issue {name: STRING, issue_id: STRING, keywords: STRING, page_numbers: STRING, year: INTEGER, link: STRING, volumn: STRING, language: STRING, abstract: STRING, conclusion: STRING, domain: STRING, doi: STRING},
+- Author {name: STRING, author_id: STRING, phone: STRING, organization: STRING, email: STRING},
+- Domain {name: STRING},
+- Organization {name: STRING, id: STRING},
+- Year {name: INTEGER},
+- Domain.name contains only the values in this list: ['Hóa chế biến dầu khí', 'Thăm dò khai thác dầu khí', 'Công nghệ dầu khí', 'Kinh tế quản lý dầu khí', 'An toàn môi trường dầu khí', 'Năng lượng mới', 'Công nghiệp khí', 'Nghiên cứu trao đổi', 'Chuyển đổi số trong công nghiệp dầu khí', 'Chiến lược Phát triển năng lượng', 'Công nghiệp điện']
+
+The relationships are the following:
+(:Issue)-[:WRITTEN_BY]->(:Author),
+(:Issue)-[:PUBLISHED_IN]->(:Year),
+(:Year)-[:HAS]->(:Issue),
+(:Issue)-[:HAS_DOMAIN]->(:Domain),
+(:Domain)-[:HAS_ISSUE]->(:Issue),
+(:Author)-[:HAS_WRITTEN]->(:Issue),
+(:Author)-[:WORK_IN]->(:Organization),
+(:Organization)-[:HAS_EMPLOYEE]->(:Author).
+
+Note: 
+Do not include any explanations or apologies in your responses.
+Do not respond to any questions that might ask anything else than for you to construct a Cypher statement.
+Do not include any text except the generated Cypher statement.
+
+Examples: Here are a few examples of generated Cypher statements for particular questions:
+
+User Question: Có bao nhiêu Domain trong cơ sở dữ liệu?
+Cypher Query: MATCH (d:Domain) RETURN COUNT(DISTINT d.name) AS numberOfDomains
+
+User Question: Liệt kê các Domain trong cơ sở dữ liệu?
+Cypher Query: MATCH (d:Domain) RETURN DISTINCT d.name
+
+User Question: Liệt kê các bài báo của tác giả Doan Tien Quyet?
+Cypher Query: MATCH (a:Author {name: 'Đoàn Tiến Quyết'})-[:HAS_WRITTEN]->(i:Issue) RETURN i.name
+
+User Question: Các bài báo của tác giả Đoàn Tiến Quyết?
+Cypher Query: MATCH (a:Author {name: 'Đoàn Tiến Quyết'})-[:HAS_WRITTEN]->(i:Issue) RETURN i.name
+
+User Question: {{$user_question}}
+Cypher Query: 

@@ -16,7 +16,7 @@ class KGSearch():
         self.node_relations = self._kg_semantic_search(user_input)
         _prompt = self._prompt(user_input, self.node_relations)
         response = self.openai_client.chat.completions.create(
-            model="gpt-3.5-turbo-0125",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": _prompt}],
             temperature=0,
             max_tokens=2000,

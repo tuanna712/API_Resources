@@ -1,0 +1,49 @@
+Deploy api using SSH
+
+	1	Log-in server
+ 
+Login: ssh -p 2244 -i ~/.ssh/id_ed25519 root@3.88.91.6
+ 
+	1	Copy code folder from host to remote Server
+ 
+nad@NADs-Mac-Studio-2 ~ % scp -P 2244 -i ~/.ssh/id_ed25519 -r /Users/nad/Desktop/TCDK_API root@3.88.91.6:/home/root/TCDK_API
+	1	Move to destination by cd command.
+	2	Build
+ 
+docker build -t tcdk_api .
+docker run -d --name tcdk_api_container -p 9999:80 tcdk_api
+ 
+4. Re-deploy
+ 
+4.1 Stop Container
+ 
+docker stop tcdk_api_container
+ 
+4.2 Remove Container
+ 
+docker rm tcdk_api_container
+ 
+4.3 Remove Image
+
+docker images
+docker rmi tcdk_api
+ 
+4.4 Rename or remove old folder
+ 
+rm -r TCDK_API
+ 
+4.5 Copy new data
+ 
+nad@NADs-Mac-Studio-2 ~ % scp -P 2244 -i ~/.ssh/id_ed25519 -r /Users/nad/Desktop/TCDK_API root@3.88.91.6:/home/root/TCDK_API
+ 
+ 
+ 
+4.6. cd to new data folder
+ 
+ 
+4.7 Re-Build
+ 
+docker build -t tcdk_api .
+docker run -d --name tcdk_api_container -p 9999:80 tcdk_api
+ 
+docker run -d --name vhdn_api_container -p 9998:80 vhdn_api

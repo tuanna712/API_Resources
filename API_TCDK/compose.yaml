@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: .
+      target: builder
+    container_name: tcdk_api
+    environment:
+      PORT: 8000
+    ports:
+      - '9999:8000'
+    restart: "no"

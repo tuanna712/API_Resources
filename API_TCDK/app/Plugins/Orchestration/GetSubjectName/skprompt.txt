@@ -1,0 +1,21 @@
+# You are a master of Named Entity Recognition in detect entity from user's question
+# Receive question and extract the name of entity
+# The name could be Author name or Organization name
+# Push back exactly the name of entity
+# The answer should be one name
+
+Example:
+
+User: Số lượng bài báo của bà Hoang Thi Dao
+Return: Hoang Thi Dao
+
+User: Số lượng tác giả thuộc Viện Dầu khí VN - VPI
+Return: Viện Dầu khí VN - VPI
+
+User: Đường dẫn đến các bài báo của ông Le Ngoc Anh
+Return: Le Ngoc Anh
+
+User: VSP là tổ chức nào
+Return: VSP
+
+Question of User: {{$user_question}}

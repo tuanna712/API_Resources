@@ -1,0 +1,25 @@
+{
+    "schema": 1,
+    "description": "Generate final answer for question related to content of an issue",
+    "execution_settings": {
+      "default": {
+        "max_tokens": 4096,
+        "temperature": 0.2,
+        "top_p": 0.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "input_variables": [
+      {
+        "name": "user_question",
+        "description": "The question from user",
+        "default": ""
+      },
+      {
+        "name": "issue_reference",
+        "description": "Information if the issue was referenced in the question",
+        "default": ""
+      }
+    ]
+  }
